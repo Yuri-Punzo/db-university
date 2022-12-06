@@ -88,10 +88,11 @@ WHERE `departments`.`name` = "Dipartimento di Matematica";
 
 BONUS)Selezionare per ogni studente quanti tentativi d’esame ha sostenuto per superare ciascuno dei suoi esami
 ```sql
-SELECT `students`.`name` AS `Student_Name`, `students`.`surname` AS `Student_Surname`, `exam_student`.`*`, `courses`.`id` AS `Course_ID`, `courses`.`name` AS `Course_Name`
+SELECT `students`.`name` AS `Student_Name`, `students`.`surname` AS `Student_Surname`, `courses`.`name` AS `Course_Name`, COUNT(`courses`.`name`) AS 'Number_Of_Try'
 FROM `exam_student`
 JOIN `students` ON `exam_student`.`student_id` = `students`.`id`
 JOIN `exams` ON `exam_student`.`exam_id` = `exams`.`id`
 JOIN `courses` ON `exams`.`course_id` = `courses`.`id`
-/* GROUP BY / WHERE COUNT() `exam_student`.`vote` >= 18 ?; */
+WHERE `exam_student`.`vote` < 18
+GROUP BY `Student_Name`, `Student_Surname`, `Course_Name`;
 ```
