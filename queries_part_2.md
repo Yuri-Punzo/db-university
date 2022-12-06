@@ -69,7 +69,8 @@ ORDER BY `students`.`surname` ASC, `students`.`name` ASC;
 5)Selezionare tutti i corsi di laurea con i relativi corsi e insegnanti
 ```sql
 SELECT `degrees`.`name` AS `Degree_Name`, `courses`.`name` AS `Course_Name`, `teachers`.`name` AS `Teacher_Name`, `teachers`.`surname` AS `Teacher_Surname`
-FROM `course_teacher` JOIN `teachers` ON `teachers`.`id` = `course_teacher`.`teacher_id`
+FROM `course_teacher`
+JOIN `teachers` ON `teachers`.`id` = `course_teacher`.`teacher_id`
 JOIN `courses` ON `course_teacher`.`course_id` = `courses`.`id`
 JOIN `degrees` ON `degrees`.`id` = `courses`.`degree_id`;
 ```
